@@ -1,0 +1,56 @@
+<div class="card">
+  <app-form-theme title="Members" subtitle="List of" [goNextPage]="goNextPage" (onNextPage)="onNextPage()">
+    <p-table (onRowSelect)="onRowSelected()" (onRowUnselect)="onRowUnselect()" #dt
+      [value]="(members$|async)!.data || []" [(selection)]="selectedMember" dataKey="id" [rowHover]="true" [rows]="5"
+      [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [paginator]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+      [globalFilterFields]="['name','username','email','phone']">
+      <ng-template pTemplate="caption">
+        <div class="table-header flex align-items-center justify-content-between">
+          List of Members
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input class="p-inputtext" pInputText type="text"
+              (input)="dt.filterGlobal($event!.target!.value, 'contains')" placeholder="Global Search" />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 2.25em"></th>
+          <th *ngFor="let col of cols">
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-member>
+        <tr class="p-selectable-row">
+          <td>
+            <p-tableRadioButton [value]="member"></p-tableRadioButton>
+          </td>
+          <td>
+            <span class="p-column-title">Name</span>
+            {{member.name}}
+          </td>
+          <td>
+            <span class="p-column-title">Username</span>
+            {{member.username}}
+          </td>
+          <td>
+            <span class="p-column-title">Email</span>
+            {{member.email}}
+          </td>
+          <td>
+            <span class="p-column-title">Phone</span>
+            {{member.phone}}
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="8">No members found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </app-form-theme>
+</div>

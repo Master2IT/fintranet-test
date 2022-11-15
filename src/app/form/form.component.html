@@ -1,0 +1,29 @@
+<div class="card">
+  <app-form-theme title="Form Information" [goNextPage]="goNextPage" (onNextPage)="onNextPage()">
+    <form [formGroup]="reactiveForm" autocomplete="off" novalidate>
+      <div class="grid p-fluid">
+        <div class="col-12 md:col-3">
+          <label for="amount">Amount: </label>
+          <input class="p-inputtext" type="text" pInputText name="amount" formControlName="amount" id="amount"
+            pKeyFilter="num">
+        </div>
+        <div class="col-12 md:col-3">
+          <label for="date">Date: </label>
+          <p-calendar inputId="date" name="date" formControlName="date"></p-calendar>
+        </div>
+        <div class="col-12 md:col-3">
+          <label for="status">Status</label>
+          <p-dropdown inputId="status" [options]="statuses" name="status" formControlName="status" [showClear]="true">
+          </p-dropdown>
+
+        </div>
+        <div class="col-12 md:col-3">
+          <label for="fund">Source of fund</label>
+          <input class="p-inputtext" name="fund" formControlName="fund" type="text" pInputText pKeyFilter="alpha"
+            inputId="fund">
+        </div>
+      </div>
+    </form>
+
+  </app-form-theme>
+</div>

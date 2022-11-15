@@ -1,0 +1,34 @@
+<div class="card">
+  <app-form-theme title="Summary" subtitle="Conclusion" [showNext]="false">
+    <div class="field col-12">
+      <label>Image: </label>
+      <br />
+      <img [src]="sanitizer.bypassSecurityTrustResourceUrl(info.image)" width="150" height="150">
+    </div>
+    <div class="field col-12">
+      <label>Amount: </label>
+      <br />
+      <b>{{info.form.amount || '-'}}</b>
+    </div>
+    <div class="field col-12">
+      <label>Date: </label>
+      <br />
+      <b>{{info.form.date || '-'}}</b>
+    </div>
+    <div class="field col-12">
+      <label>Status: </label>
+      <br />
+      <b>{{info.form.status || '-'}}</b>
+    </div>
+    <div class="field col-12">
+      <label>Source of fund: </label>
+      <br />
+      <b>{{info.form.fund || '-'}}</b>
+    </div>
+    <div class="field col-12" *ngFor="let member of info.selected | keyvalue">
+      <label>{{member.key}}: </label>
+      <br />
+      <b>{{member.value}}</b>
+    </div>
+  </app-form-theme>
+</div>
